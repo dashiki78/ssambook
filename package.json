@@ -1,0 +1,8 @@
+{
+  "name": "ssambook",
+  "version": "1.0.0",
+  "description": "student management for teacher",
+  "main": "index.js",
+  "author": "wonhyuk",
+  "license": "MIT"
+}
