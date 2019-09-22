@@ -4,5 +4,8 @@
   "description": "student management for teacher",
   "main": "index.js",
   "author": "wonhyuk",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
