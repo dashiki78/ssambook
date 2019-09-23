@@ -1,3 +1,7 @@
 export const home = (req, res) => {
-    res.send("hahaha");
+    res.render("home", { pageTitle: "HOME"});
 };
+
+export const changePassword = (req, res) => {
+    res.render("changePassword");
+}

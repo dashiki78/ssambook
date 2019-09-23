@@ -1,0 +1,36 @@
+doctype html
+html
+    head
+        link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU", crossorigin="anonymous")
+        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T", crossorigin="anonymous")
+        title #{pageTitle} | #{siteName}
+    body
+        nav.navbar.navbar-light.navbar-expand-md(style="background-color: #e3f2fd;")
+            a.navbar-brand(href=routes.home) SsamBook
+            button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarTogglerDemo02", aria-controls="navbarTogglerDemo02", aria-expanded="false", aria-label="Toggle navigation") 
+                span.navbar-toggler-icon
+
+            div.collapse.navbar-collapse#navbarTogglerDemo02
+                ul.navbar-nav
+                    li.nav-item
+                        a.nav-link(href="#") 학생관리
+                    li.nav-item
+                        a.nav-link(href="#") 수업관리
+                ul.navbar-nav
+                    if !loggedUser    
+                        li.nav-item
+                            a.nav-link(href="#") 회원가입
+                        li.nav-item
+                            a.nav-link(href="#") 로그인
+                    else
+                        li.nav-item
+                            a.nav-link(href="#") 회원정보
+                        li.nav-item
+                            a.nav-link(href="#") 로그아웃
+
+        main
+            block content
+
+        script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js", integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo", crossorigin="anonymous")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js", integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1", crossorigin="anonymous")
+        script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js", integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM", crossorigin="anonymous")

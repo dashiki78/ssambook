@@ -18,7 +18,8 @@
     "helmet": "^3.21.1",
     "mongoose": "^5.7.1",
     "morgan": "^1.9.1",
-    "passport": "^0.4.0"
+    "passport": "^0.4.0",
+    "pug": "^2.0.4"
   },
   "scripts": {
     "dev:server": "nodemon --exec babel-node src/init.js --delay 2"
