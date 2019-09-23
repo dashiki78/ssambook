@@ -12,6 +12,8 @@ import { localsMiddleware } from "./middlewares";
 import routes from "./routes";
 import globalRouter from "./routers/globalRouter";
 
+import "./passport";
+
 const app = express();
 
 const CokieStore = MongoStore(session);
@@ -33,8 +35,8 @@ app.use(morgan("dev"));
 //   })
 // );
 
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(localsMiddleware);
 
 app.use(routes.home, globalRouter);
