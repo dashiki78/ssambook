@@ -12,6 +12,7 @@ import MongoStore from "connect-mongo";
 import { localsMiddleware } from "./middlewares";
 import routes from "./routes";
 import globalRouter from "./routers/globalRouter";
+import studentsRouter from "./routers/studentsRouter";
 
 import "./passport";
 
@@ -42,6 +43,6 @@ app.use(passport.session());
 app.use(localsMiddleware);
 
 app.use(routes.home, globalRouter);
-
+app.use(routes.students, studentsRouter);
 
 export default app;

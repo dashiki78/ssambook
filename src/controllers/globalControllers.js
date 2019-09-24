@@ -41,7 +41,7 @@ export const getLogin = (req, res) => {
 };
 
 export const postLogin = passport.authenticate("local", {
-    failureRedirect: routes.login,
+  failureRedirect: routes.login,
   successRedirect: routes.home,
   successFlash: "환영합니다",
   failureFlash: "로그인에 실패하였습니다. 이메일 또는 비밀번호를 확인하세요"
@@ -52,6 +52,28 @@ export const logout = (req, res) => {
     req.logout();
     res.redirect(routes.home);
   };
+
+export const getEditProfile = (req, res) => {
+    res.render("editProfile");
+};
+
+export const postEditProfile = async (req, res) => {
+    const {
+        body : { name, email }
+    } = req;
+    console.log(name, email);
+    try {
+        await User.findByIdAndUpdate(req.user.id, {
+            nickName: name,
+            email
+        });
+        req.flash("success", "회원정보가 수정되었습니다");
+        res.redirect(routes.home);
+    } catch (error) {
+        req.flash("erroe", "회원정보가 수정되지 않았습니다");
+        res.redirect(routes.editProfile);
+    }
+};
 
 export const changePassword = (req, res) => {
     res.render("changePassword");

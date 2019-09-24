@@ -15,7 +15,7 @@ const STUDENTS = "/students";
 const STUDENTS_LIST = "/list";
 const STUDENTS_EDIT = "/edit/:student_id";
 const STUDENTS_NEW = "/new";
-const STUDENTS_DELETE = "/delete/:student_id"
+const STUDENTS_DELETE = "=/delete/:student_id"
 
 // 수업관리
 const LESSON = "/lesson";
@@ -33,7 +33,10 @@ const routes = {
     users: USERS,
     userDetail: USER_DETAIL,
     editProfile: EDIT_PROFILE,
-    changePassword: CHANGE_PASSWORD
+    changePassword: CHANGE_PASSWORD,
+    
+    students: STUDENTS,
+    studentsNew: STUDENTS_NEW
 };
 
 export default routes;
