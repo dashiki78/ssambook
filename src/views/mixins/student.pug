@@ -5,6 +5,10 @@ mixin student(student={})
             p=student.school
             p=student.grade
             p=student.note
-            p=student.lessonDay[1]
+            p=student.lessonDay
             p=student.registrationDate
             p=student.tel
+            p=student.id
+            a(type="button", href=`/students${routes.studentsEdit(student.id)}`) 수정
+            a(type="button", href=`/students${routes.studentsDelete(student.id)}`) 삭제
+        

@@ -1,35 +1,35 @@
 import mongoose from "mongoose";
 
 const StudentSchema = new mongoose.Schema({
-    name: {
+    "name": {
         type: String,
         required: "이름은 필수입력사항입니다"
     },
-    grade: {
+    "grade": {
         type: String,
         required: "학년은 필수입력사항입니다"
     },
-    school: String,
-    tel: String,
-    registrationDate: Date,
-    note: String,
-    lessonDay: [{
+    "school": String,
+    "tel": String,
+    "registrationDate": Date,
+    "note": String,
+    "lessonDay": [{
         type: String,
         enum: ['월', '화', '수', '목', '금', '토', '일']
     }],
-    teacher: {
+    "teacher": {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    lessonDiary: [{
+    "lessonDiary": [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "LessonDiary"
     }],
-    status: {
+    "status": {
         type: String,
         enum: ['재원생', '퇴원생']
     },
-    createdAt: {
+    "createdAt": {
         type: Date,
         default: Date.now
       }
