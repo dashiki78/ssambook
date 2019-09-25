@@ -36,7 +36,8 @@ const routes = {
     changePassword: CHANGE_PASSWORD,
     
     students: STUDENTS,
-    studentsNew: STUDENTS_NEW
+    studentsNew: STUDENTS_NEW,
+    studentsList: STUDENTS_LIST
 };
 
 export default routes;

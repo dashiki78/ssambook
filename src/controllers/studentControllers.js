@@ -18,7 +18,6 @@ export const postStudentsNew = async (req, res) => {
             tel
         }
     } = req;
-    console.log(req.body);
     try {
         const newStudent = await Students.create({
             name: studentName,
@@ -35,7 +34,17 @@ export const postStudentsNew = async (req, res) => {
         req.user.save();
         res.redirect(routes.home);        
     } catch (error) {
-        console.log(error);
+        req.flash("error", error.message);
+        res.redirect(routes.home);
+    }
+};
+
+export const studentsList = async (req, res) => {
+    try {
+        const students = await Students.find({teacher: req.user.id});
+        console.log(students);
+        res.render("studentsList", { students });
+    } catch (error) {
         req.flash("error", error.message);
         res.redirect(routes.home);
     }
