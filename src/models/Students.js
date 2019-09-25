@@ -13,17 +13,21 @@ const StudentSchema = new mongoose.Schema({
     tel: String,
     registrationDate: Date,
     note: String,
-    lessonDay: {
+    lessonDay: [{
         type: String,
         enum: ['월', '화', '수', '목', '금', '토', '일']
-    },
+    }],
     teacher: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    lessonDiary: {
+    lessonDiary: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "LessonDiary"
+    }],
+    status: {
+        type: String,
+        enum: ['재원생', '퇴원생']
     },
     createdAt: {
         type: Date,
