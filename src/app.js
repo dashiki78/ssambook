@@ -13,6 +13,7 @@ import { localsMiddleware } from "./middlewares";
 import routes from "./routes";
 import globalRouter from "./routers/globalRouter";
 import studentsRouter from "./routers/studentsRouter";
+import lessonRouter from "./routers/lessonRouter";
 
 import "./passport";
 
@@ -44,5 +45,6 @@ app.use(localsMiddleware);
 
 app.use(routes.home, globalRouter);
 app.use(routes.students, studentsRouter);
+app.use(routes.lesson, lessonRouter);
 
 export default app;

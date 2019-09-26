@@ -19,6 +19,7 @@ const STUDENTS_DELETE = "/delete/:student_id"
 
 // 수업관리
 const LESSON = "/lesson";
+const LESSON_CONFIG ="/config";
 const LESSON_NEW = "/new/:student_id/:date";
 const LESSON_LIST = "/list/:start_date/:end_date";
 const LESSON_EDIT = "/edit/:lesson_id";
@@ -53,7 +54,9 @@ const routes = {
         } else {
             return STUDENTS_DELETE;
         };
-    }
+    },
+    lesson: LESSON,
+    lessonConfig: LESSON_CONFIG
 };
 
 export default routes;

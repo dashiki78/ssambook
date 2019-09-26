@@ -1,0 +1,36 @@
+extends ../layouts/main
+include ../mixins/studentDiary
+
+block content
+    .container
+        .row
+            .col-sm-6
+                .row
+                    label(for="search_name") 학생검색:
+                    input#search_name(type="text")
+                    button.search_name_btn() 검색
+                .row
+                    label(for="diaryDay") 요일로검색:
+                    select#diaryDay(name="diaryDay")
+                        option(value="") 오늘요일
+                        option(value="월") 월
+                        option(value="화") 화
+                        option(value="수") 수
+                        option(value="목") 목
+                        option(value="금") 금
+                        option(value="토") 토
+                        option(value="일") 일
+                each student in students
+                    +studentDiary(student)
+            .col-sm-6
+                .row
+                    label(for="") 학생이름:
+                    input(type="text", readonly, value="개똥이" )
+                .row
+                    label(for="") 날짜선택:
+                    input(type="date")
+                .row
+                    button 학습일지입력
+
+
+                

@@ -53,7 +53,6 @@ export const getEditStudent = async (req, res) => {
     const { 
         params : { student_id }
      } = req;
-     console.log(student_id);
     try {
         const student = await Students.findById({_id: student_id});
         res.render("editStudent", { student });
@@ -100,7 +99,6 @@ export const deleteStudent = async (req, res) => {
     const {
         params: { student_id }
       } = req;
-    console.log(student_id);
     try {
         const student = await Students.findById(student_id);
         if (String(student.teacher) !== req.user.id){
