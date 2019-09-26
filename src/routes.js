@@ -45,15 +45,14 @@ const routes = {
             return `/edit/${student_id}`;
         } else {
             return STUDENTS_EDIT;
-        };
+        }
     },
     studentsDelete: (student_id) => {
         if (student_id) {
-            // console.log(student_id);
             return `/delete/${student_id}`;
         } else {
             return STUDENTS_DELETE;
-        };
+        }
     },
     lesson: LESSON,
     lessonConfig: LESSON_CONFIG
