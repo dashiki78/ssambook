@@ -5,9 +5,8 @@ block content
         .row
             .col-sm-6
                 .row
-                    label(for="search_name") 학생검색:
+                    label(for="search_name") 학생검색 : 
                     input#search_name_js(type="text")
-                    button.search_name_btn() 검색
                 .row
                     label(for="diaryDay") 요일로검색:
                     select#diaryDay(name="diaryDay")
@@ -24,12 +23,12 @@ block content
             .col-sm-6
                 .row
                     label(for="") 학생이름:
-                    input(type="text", readonly, value="개똥이" )
+                    input#student_name_choose(type="text", readonly, value="개똥이" )
                 .row
                     label(for="") 날짜선택:
-                    input(type="date")
+                    input#choose_date(type="date")
                 .row
-                    button 학습일지입력
+                    a(type="button", href=`/lesson${routes.lessonNew}`) 학습일지입력
 
 
                 

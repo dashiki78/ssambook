@@ -3,6 +3,10 @@ import axio from "axios";
 const lessonClass = document.getElementById('lesson_config_js');
 const searchName = document.getElementById('search_name_js');
 const studentList = document.getElementById('student_list_js');
+const selectDay = document.getElementById('diaryDay');
+const chooseName = document.getElementById('student_name_choose');
+const chooseDate = document.getElementById('choose_date');
+
 let studentListObj = {};
 
 const getStudent = async () => {
@@ -11,10 +15,27 @@ const getStudent = async () => {
         console.log(studentListObj.data);        
         insertStudent(undefined, undefined);
     } catch (error) {
-        console.log(error);    }
+        console.log(error); 
+    }
 }
 
 const insertStudent = (day, name) => {
+    let div = document.createElement("div");
+    div.className = "studebtArea";
+    if (name) {
+        for (let student in studentListObj.data) {
+            if (studentListObj.data[student].name.indexOf(name) != -1) {
+                const studentName = studentListObj.data[student].name;
+                    let a = document.createElement("a");
+                    a.className = "name";
+                    a.innerHTML = `<li>${studentName}</li>`;
+                    a.addEventListener("click", chooseNamefnc);
+                    div.appendChild(a);
+                    studentList.appendChild(div);
+                    return ;
+            }
+        }
+    }
     if (!day) {
         const day = getDay();
         for (let student in studentListObj.data) {
@@ -24,7 +45,9 @@ const insertStudent = (day, name) => {
                     let a = document.createElement("a");
                     a.className = "name";
                     a.innerHTML = `<li>${studentName}</li>`;
-                    studentList.appendChild(a);
+                    a.addEventListener("click", chooseNamefnc);
+                    div.appendChild(a);
+                    studentList.appendChild(div);
                 }
             }
         }
@@ -37,7 +60,8 @@ const insertStudent = (day, name) => {
                     let a = document.createElement("a");
                     a.className = "name";
                     a.innerHTML = `<li>${studentName}</li>`;
-                    studentList.appendChild(a);
+                    div.appendChild(a);
+                    studentList.appendChild(div);
                 }
             }
         }
@@ -50,7 +74,8 @@ const insertStudent = (day, name) => {
                     let a = document.createElement("a");
                     a.className = "name";
                     a.innerHTML = `<li>${studentName}</li>`;
-                    studentList.appendChild(a);
+                    div.appendChild(a);
+                    studentList.appendChild(div);
                 }
             }
         }
@@ -63,7 +88,8 @@ const insertStudent = (day, name) => {
                     let a = document.createElement("a");
                     a.className = "name";
                     a.innerHTML = `<li>${studentName}</li>`;
-                    studentList.appendChild(a);
+                    div.appendChild(a);
+                    studentList.appendChild(div);
                 }
             }
         }
@@ -76,7 +102,8 @@ const insertStudent = (day, name) => {
                     let a = document.createElement("a");
                     a.className = "name";
                     a.innerHTML = `<li>${studentName}</li>`;
-                    studentList.appendChild(a);
+                    div.appendChild(a);
+                    studentList.appendChild(div);
                 }
             }
         }
@@ -89,7 +116,8 @@ const insertStudent = (day, name) => {
                     let a = document.createElement("a");
                     a.className = "name";
                     a.innerHTML = `<li>${studentName}</li>`;
-                    studentList.appendChild(a);
+                    div.appendChild(a);
+                    studentList.appendChild(div);
                 }
             }
         }
@@ -102,7 +130,8 @@ const insertStudent = (day, name) => {
                     let a = document.createElement("a");
                     a.className = "name";
                     a.innerHTML = `<li>${studentName}</li>`;
-                    studentList.appendChild(a);
+                    div.appendChild(a);
+                    studentList.appendChild(div);
                 }
             }
         }
@@ -115,7 +144,8 @@ const insertStudent = (day, name) => {
                     let a = document.createElement("a");
                     a.className = "name";
                     a.innerHTML = `<li>${studentName}</li>`;
-                    studentList.appendChild(a);
+                    div.appendChild(a);
+                    studentList.appendChild(div);
                 }
             }
         }
@@ -123,10 +153,11 @@ const insertStudent = (day, name) => {
         console.log('all');
         for (let student in studentListObj.data) {
             const studentName = studentListObj.data[student].name;
-                    let a = document.createElement("a");
-                    a.className = "name";
-                    a.innerHTML = `<li>${studentName}</li>`;
-                    studentList.appendChild(a);
+            let a = document.createElement("a");
+            a.className = "name";
+            a.innerHTML = `<li>${studentName}</li>`;
+            div.appendChild(a);
+            studentList.appendChild(div);
         }
     }
     console.log(name);
@@ -136,12 +167,53 @@ const getDay = () => {
     const date = new Date();
     const week = new Array('일', '월', '화', '수', '목', '금', '토');
     const day = week[date.getDay()];
-    console.log(day);
     return day;
+}
+
+const changeStudentList = (event) => {
+    const day = event.target.value;
+    const studentArea = document.getElementsByClassName("studebtArea");
+    studentList.removeChild(studentArea[0]);
+    insertStudent(day, undefined);
+}
+
+const chooseNamefnc = (event) => {
+    const selectName =  event.target.innerText;
+    chooseName.value = selectName;
+}
+
+const autoDate = () => {
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth()+1
+    var day = date.getDate();
+    if(month < 10){
+        month = "0"+month;
+    }
+    if(day < 10){
+        day = "0"+day;
+    }
+    var today = year+"-"+month+"-"+day;
+    chooseDate.value = today;
+}
+
+const searchNamefnc = (event) => {
+    const searchingByName = event.target.value;
+    for (let student in studentListObj.data) {
+        if (studentListObj.data[student].name.indexOf(searchingByName) != -1) {
+            const studentArea = document.getElementsByClassName("studebtArea");
+            studentList.removeChild(studentArea[0]);
+            insertStudent (undefined, searchingByName);
+        }
+    }
+
 }
 
 const init = () => {
     getStudent();
+    selectDay.addEventListener("change", changeStudentList);
+    searchName.addEventListener("keyup", searchNamefnc);
+    autoDate();
 }
 
 if (lessonClass) {

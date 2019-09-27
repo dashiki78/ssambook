@@ -11,3 +11,7 @@ export const configLesson = async (req, res) => {
         res.redirect(routes.home);
     }    
 };
+
+export const getNewLesson = (req, res) => {
+    res.render("lesson/lessonNewDiary");
+}
