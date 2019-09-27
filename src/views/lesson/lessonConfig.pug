@@ -23,12 +23,12 @@ block content
             .col-sm-6
                 .row
                     label(for="") 학생이름:
-                    input#student_name_choose(type="text", readonly, value="개똥이" )
+                    input#student_name_choose(type="text", readonly, value="")
                 .row
                     label(for="") 날짜선택:
                     input#choose_date(type="date")
                 .row
-                    a(type="button", href=`/lesson${routes.lessonNew}`) 학습일지입력
+                    a#new_input_diary(type="button", href=`/lesson${routes.lessonNew}`) 학습일지입력
 
 
                 
