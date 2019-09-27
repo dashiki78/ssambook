@@ -13,5 +13,9 @@ export const configLesson = async (req, res) => {
 };
 
 export const getNewLesson = (req, res) => {
+    const {
+        params : { student_id, date } 
+    } = req;
+    console.log(student_id, date);
     res.render("lesson/lessonNewDiary");
 }

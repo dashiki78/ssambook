@@ -216,7 +216,7 @@ const newDiaryMovefnc = (event) => {
         }
         if (chooseDate.value) {
             diaryDate = chooseDate.value;
-            location.href="new/"+studentId+"/"+diaryDate;
+            location.href="new/"+studentId+"/"+diaryDate+"?name="+chooseName.value;
         }        
     } else {
         alert("대상을 지정하세요");
