@@ -1,13 +1,12 @@
 extends ../layouts/main
-include ../mixins/studentDiary
 
 block content
-    .container
+    .container#lesson_config_js
         .row
             .col-sm-6
                 .row
                     label(for="search_name") 학생검색:
-                    input#search_name(type="text")
+                    input#search_name_js(type="text")
                     button.search_name_btn() 검색
                 .row
                     label(for="diaryDay") 요일로검색:
@@ -20,8 +19,8 @@ block content
                         option(value="금") 금
                         option(value="토") 토
                         option(value="일") 일
-                each student in students
-                    +studentDiary(student)
+                        option(value="전체요일") 전체요일
+                ul#student_list_js
             .col-sm-6
                 .row
                     label(for="") 학생이름:

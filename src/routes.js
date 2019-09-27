@@ -25,6 +25,10 @@ const LESSON_LIST = "/list/:start_date/:end_date";
 const LESSON_EDIT = "/edit/:lesson_id";
 const LESSON_DELETE = "/delete/:lesson_id";
 
+// api
+const API = "/api";
+const STUDENT_GET = "/getstudent";
+
 const routes = {
     home: HOME,
     join: JOIN,
@@ -55,7 +59,9 @@ const routes = {
         }
     },
     lesson: LESSON,
-    lessonConfig: LESSON_CONFIG
+    lessonConfig: LESSON_CONFIG,
+    api: API,
+    getStudent: STUDENT_GET
 };
 
 export default routes;

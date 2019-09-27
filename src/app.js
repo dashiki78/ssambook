@@ -14,6 +14,7 @@ import routes from "./routes";
 import globalRouter from "./routers/globalRouter";
 import studentsRouter from "./routers/studentsRouter";
 import lessonRouter from "./routers/lessonRouter";
+import apiRouter from "./routers/apiRouter";
 
 import "./passport";
 
@@ -46,5 +47,6 @@ app.use(localsMiddleware);
 app.use(routes.home, globalRouter);
 app.use(routes.students, studentsRouter);
 app.use(routes.lesson, lessonRouter);
+app.use(routes.api, apiRouter);
 
 export default app;
