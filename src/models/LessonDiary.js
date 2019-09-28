@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const LessonSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: "이름은 필수입력사항입니다"
+    },
     date: {
         type: Date,
         required: "날짜는 필수입력사항입니다"

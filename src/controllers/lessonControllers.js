@@ -12,10 +12,11 @@ export const configLesson = async (req, res) => {
     }    
 };
 
-export const getNewLesson = (req, res) => {
+export const getNewLesson = async (req, res) => {
     const {
-        params : { student_id, date } 
+        params : { student_id, date },
+        query : { name } 
     } = req;
-    console.log(student_id, date);
-    res.render("lesson/lessonNewDiary");
+    console.log(student_id, date, name);
+    res.render("lesson/lessonNewDiary", { student_id, date, name });
 }
