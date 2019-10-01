@@ -15,7 +15,7 @@ block content
                 .form-group
                     .form-check.form-check-inline
                         label(for="") 출석
-                        input(type="radio", name="attend", value="출석")
+                        input(type="radio", name="attend", value="출석", checked)
                     .form-check.form-check-inline
                         label(for="") 지각
                         input(type="radio", name="attend", value="지각")
@@ -25,11 +25,11 @@ block content
                 fieldset
                     legend 숙제
                     .form-group.row
-                        label.col-sm-2(for="") 이행
+                        label.col-sm-2(for="") 이행 :
                         .col-sm-10
                             .form-check.form-check-inline
                                 label(for="") 우수
-                                input(type="radio", name="fulfillment", value="우수")
+                                input(type="radio", name="fulfillment", value="우수", checked)
                             .form-check.form-check-inline
                                 label(for="") 양호
                                 input(type="radio", name="fulfillment", value="양호")
@@ -39,5 +39,44 @@ block content
                             .form-check.form-check-inline
                                 label(for="") 불량
                                 input(type="radio", name="fulfillment", value="불량")
-                            
+                    .form-group.row
+                        label.col-sm-2(for="") 충실도 :
+                        input.col-sm-5(type="number", max="100", min="0", name="faithfulness", value="100")
+                        input.col-sm-5(type="range", name="faithfulness", min="0", max="100", value="100")
+                    .form-group.row
+                        label.col-sm-2(for="") 완성도 :
+                        input.col-sm-5(type="number", max="100", min="0", name="homework_completeLevel", value="100")
+                        input.col-sm-5(type="range", name="homework_completeLevel", min="0", max="100", value="100")
+                fieldset
+                    legend 학습
+                    .form-group.row
+                        label(for="") 학습단원 :
+                        input(type="textarea", name="unit")
+                        button 선택
+                    .form-grop.row
+                        label.col-sm-2(for="") 학습량 :
+                        input.col-sm-5(type="number", max="100", min="0", name="volume", value="100")
+                        input.col-sm-5(type="range", name="volume", min="0", max="100", value="100")
+                    .form-grop.row
+                        label.col-sm-2(for="") 완성도 :
+                        input.col-sm-5(type="number", max="100", min="0", name="study_completeLevel", value="100")
+                        input.col-sm-5(type="range", name="study_completeLevel", min="0", max="100", value="100")
+                button 테스트입력
+                fieldset
+                    legend 테스트
+                        .form-grop.row
+                            label(for="") 테스트이름 :
+                            input(type="text", name="test_title")
+                        .form-grop.row
+                            label.col-sm-2(for="") 테스트점수 :
+                            input.col-sm-5(type="number", max="100", min="0", name="test_score", value="100")
+                            input.col-sm-5(type="range", name="test_score", min="0", max="100", value="100")
+                        .form-group.row
+                            label(for="") 테스트특이사항 : 
+                            textarea(name="test_note", cols="70", rows="5")
+                .form-group.row
+                    label(for="") 비고 :
+                    textarea(name="note", cols="70", rows="10")
+                input(type="submit")
+
                 
