@@ -1,4 +1,43 @@
 extends ../layouts/main
 
 block content
-    p newDiary
+    .container
+        h2 #{name}학생의 #{date} 학습일지 작성
+        .form-container
+            form()
+                .form-group
+                    .form-check.form-check-inline
+                        label(for="") 정규
+                        input(type="radio", name="studyType", value="정규", checked)
+                    .form-check.form-check-inline
+                        label(for="") 보충
+                        input(type="radio", name="studyType", value="보충")
+                .form-group
+                    .form-check.form-check-inline
+                        label(for="") 출석
+                        input(type="radio", name="attend", value="출석")
+                    .form-check.form-check-inline
+                        label(for="") 지각
+                        input(type="radio", name="attend", value="지각")
+                    .form-check.form-check-inline
+                        label(for="") 결석
+                        input(type="radio", name="attend", value="결석")
+                fieldset
+                    legend 숙제
+                    .form-group.row
+                        label.col-sm-2(for="") 이행
+                        .col-sm-10
+                            .form-check.form-check-inline
+                                label(for="") 우수
+                                input(type="radio", name="fulfillment", value="우수")
+                            .form-check.form-check-inline
+                                label(for="") 양호
+                                input(type="radio", name="fulfillment", value="양호")
+                            .form-check.form-check-inline
+                                label(for="") 보통
+                                input(type="radio", name="fulfillment", value="보통")
+                            .form-check.form-check-inline
+                                label(for="") 불량
+                                input(type="radio", name="fulfillment", value="불량")
+                            
+                
