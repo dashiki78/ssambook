@@ -4,7 +4,10 @@ block content
     .container
         h2 #{name}학생의 #{date} 학습일지 작성
         .form-container
-            form()
+            form#lesson_newForm_js(action=`/lesson${routes.lessonNew}`, method="post")
+                input(type="text", name="student_id", value=student_id, hidden)
+                input(type="text", name="name", value=name, hidden)
+                input(type="date", name="date", value=date, hidden)
                 .form-group
                     .form-check.form-check-inline
                         label(for="") 정규
@@ -42,41 +45,28 @@ block content
                     .form-group.row
                         label.col-sm-2(for="") 충실도 :
                         input.col-sm-5(type="number", max="100", min="0", name="faithfulness", value="100")
-                        input.col-sm-5(type="range", name="faithfulness", min="0", max="100", value="100")
+                        input.col-sm-5(type="range", min="0", max="100", value="100")
                     .form-group.row
                         label.col-sm-2(for="") 완성도 :
                         input.col-sm-5(type="number", max="100", min="0", name="homework_completeLevel", value="100")
-                        input.col-sm-5(type="range", name="homework_completeLevel", min="0", max="100", value="100")
+                        input.col-sm-5(type="range", min="0", max="100", value="100")
                 fieldset
                     legend 학습
                     .form-group.row
                         label(for="") 학습단원 :
                         input(type="textarea", name="unit")
-                        button 선택
+                        button#select_unit_js 선택
                     .form-grop.row
                         label.col-sm-2(for="") 학습량 :
                         input.col-sm-5(type="number", max="100", min="0", name="volume", value="100")
-                        input.col-sm-5(type="range", name="volume", min="0", max="100", value="100")
+                        input.col-sm-5(type="range", min="0", max="100", value="100")
                     .form-grop.row
                         label.col-sm-2(for="") 완성도 :
                         input.col-sm-5(type="number", max="100", min="0", name="study_completeLevel", value="100")
-                        input.col-sm-5(type="range", name="study_completeLevel", min="0", max="100", value="100")
-                button 테스트입력
-                fieldset
-                    legend 테스트
-                        .form-grop.row
-                            label(for="") 테스트이름 :
-                            input(type="text", name="test_title")
-                        .form-grop.row
-                            label.col-sm-2(for="") 테스트점수 :
-                            input.col-sm-5(type="number", max="100", min="0", name="test_score", value="100")
-                            input.col-sm-5(type="range", name="test_score", min="0", max="100", value="100")
-                        .form-group.row
-                            label(for="") 테스트특이사항 : 
-                            textarea(name="test_note", cols="70", rows="5")
+                        input.col-sm-5(type="range", min="0", max="100", value="100")
+                button#test_insert_js 테스트입력
+                .test
                 .form-group.row
                     label(for="") 비고 :
                     textarea(name="note", cols="70", rows="10")
                 input(type="submit")
-
-                
