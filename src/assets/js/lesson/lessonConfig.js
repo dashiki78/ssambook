@@ -16,7 +16,6 @@ let exist_toggle = false;
 const getStudent = async () => {
     try {
         studentListObj = await axio.get('/api/getstudent');
-        console.log(studentListObj.data);
         if (studentListObj.data.length === 0) {
             alert("관리할 학생이 없습니다")
         }        
@@ -209,7 +208,6 @@ const newDiaryMovefnc = (event) => {
                 for (let value of studentListObj.data) {
                     if (value.name === name_ch) {
                         for (let diary of value.lessonDiary) {
-                            console.log(diary.date);
                             const diary_day = diary.date.split("T",1)[0]
                             if (chooseDate.value === diary_day) {
                                 location.href="edit/"+diary._id;

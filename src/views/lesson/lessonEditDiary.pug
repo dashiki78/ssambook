@@ -4,7 +4,7 @@ block content
     .container
         h2 #{diary.name}학생의 #{date} 학습일지 수정
         .form-container
-            form.form#lesson_newForm_js(action=`/lesson${routes.lessonEdit(diary.id)}`, method="post")
+            form.form#lesson_EditForm_js(action=`/lesson${routes.lessonEdit(diary.id)}`, method="post")
                 input(type="text", name="diary_id", value=diary.id, hidden)
                 input(type="text", name="student_id", value=diary.student, hidden)
                 input(type="text", name="name", value=diary.name, hidden)
@@ -84,10 +84,11 @@ block content
                         input.col-sm-5(type="number", max="100", min="0", name="homework_completeLevel", value=diary.homework.completeLevel)
                 fieldset
                     legend 학습
-                    .form-group.row
-                        label(for="") 학습단원 :
-                        input(type="textarea", name="unit", value=diary.study.unit)
-                        button#select_unit_js 선택
+                    button#add_unit_js 추가
+                    each val, index in diary.study.unit
+                        .form-group.row.form__study-unit
+                            label(for="") 학습단원 :
+                            input(type="textarea", name="unit", value=val)
                     .form-grop.row
                         label.col-sm-2(for="") 학습량 :
                         input.col-sm-5(type="number", max="100", min="0", name="volume", value=diary.study.volume)
@@ -95,6 +96,8 @@ block content
                         label.col-sm-2(for="") 완성도 :
                         input.col-sm-5(type="number", max="100", min="0", name="study_completeLevel", value=diary.study.completeLevel)
                 .exit-test
+                    button#test_insert_js 테스트추가
+                    .test
                     each val, index in diary.test
                         .form-group.row
                             label(for="") 테스트이름 :
@@ -105,8 +108,6 @@ block content
                         .form-grop.row
                             label(for="") 테스트비고 :
                             textarea(name="test_note", cols="50", rows="5")=val.note
-                button#test_insert_js 테스트추가
-                .test
                 .form-group.row
                     label(for="") 비고 :
                     textarea(name="note", cols="70", rows="10")=diary.note

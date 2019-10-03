@@ -66,15 +66,6 @@ export const postNewLesson = async (req, res) => {
         test_score,
         test_note,
         note);
-        let test_list = [];
-        for ( let test in test_title ) {
-            const test_unit = { 
-                title : test_title[test],
-                score : test_score[test],
-                note : test_note[test]
-            }
-            test_list.push(test_unit);
-        }
     try {
         const existDiary = await LessonDiary.find({student: student_id, date: date});
         if ( existDiary.length === 0 ) {
@@ -94,13 +85,27 @@ export const postNewLesson = async (req, res) => {
                     volume,
                     completeLevel: study_completeLevel
                 },
+                test : [],
                 note,
                 teacher: req.user.id
             });
-            for (let test in test_list) {
-                newLessonDiary.test.push(test_list[test]);
+            if (typeof(test_title)==='string') {
+                newLessonDiary.test = {
+                    title: test_title,
+                    score: test_score,
+                    note: test_note
+                };
+                newLessonDiary.save();
+            } else if (typeof(test_title)==='object') {
+                for (let test in test_title) {
+                    newLessonDiary.test.push({
+                        title: test_title[test],
+                        score: test_score[test],
+                        note: test_note[test]
+                    })
+                }
+                newLessonDiary.save();
             }
-            newLessonDiary.save();
             const student = await Students.findById(student_id);
             student.lessonDiary.push(newLessonDiary.id);
             student.save();                 
@@ -171,15 +176,6 @@ export const postEditLesson = async (req, res) => {
         test_score,
         test_note,
         note);
-    let test_list = [];
-    for ( let test in test_title ) {
-        const test_unit = { 
-            title : test_title[test],
-            score : test_score[test],
-            note : test_note[test]
-        }
-        test_list.push(test_unit);
-    }
     try {
         const diary = await LessonDiary.findOneAndUpdate({_id:lesson_id}, {
             student: student_id,
@@ -200,12 +196,29 @@ export const postEditLesson = async (req, res) => {
                 test: [],
                 note
         });
-        for (let test in test_list) {
-            diary.test.push(test_list[test]);
+        if (typeof(unit)==='string') {
+            diary.study.unit.push(unit);            
+        } else if (typeof(unit)==='object') {
+            for (let val in unit) {
+                diary.study.unit.push(unit[val])
+            }
         }
-        diary.study.unit.push(unit);
+        if (typeof(test_title)==='string') {
+            diary.test = {
+                title: test_title,
+                score: test_score,
+                note: test_note
+            };
+        } else if (typeof(test_title)==='object') {
+            for (let test in test_title) {
+                diary.test.push({
+                    title: test_title[test],
+                    score: test_score[test],
+                    note: test_note[test]
+                })
+            }
+        }
         diary.save();
-        console.log(diary);
     } catch (error) {
         req.flash("error", error.message);
         res.redirect(`/lesson${routes.lessonConfig}`);
