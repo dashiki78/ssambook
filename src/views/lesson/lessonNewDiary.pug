@@ -4,7 +4,7 @@ block content
     .container
         h2 #{name}학생의 #{date} 학습일지 작성
         .form-container
-            form#lesson_newForm_js(action=`/lesson${routes.lessonNew}`, method="post")
+            form.form#lesson_newForm_js(action=`/lesson${routes.lessonNew}`, method="post")
                 input(type="text", name="student_id", value=student_id, hidden)
                 input(type="text", name="name", value=name, hidden)
                 input(type="date", name="date", value=date, hidden)
@@ -25,9 +25,9 @@ block content
                     .form-check.form-check-inline
                         label(for="") 결석
                         input(type="radio", name="attend", value="결석")
-                fieldset
+                fieldset.homework
                     legend 숙제
-                    .form-group.row
+                    .form-group.row.homework__fulfillment
                         label.col-sm-2(for="") 이행 :
                         .col-sm-10
                             .form-check.form-check-inline
@@ -42,28 +42,27 @@ block content
                             .form-check.form-check-inline
                                 label(for="") 불량
                                 input(type="radio", name="fulfillment", value="불량")
-                    .form-group.row
+                            .form-check.form-check-inline
+                                label(for="") 없음
+                                input(type="radio", name="fulfillment", value="없음")
+                    .form-group.row.homework__faithfulness
                         label.col-sm-2(for="") 충실도 :
-                        input.col-sm-5(type="number", max="100", min="0", name="faithfulness", value="100")
-                        input.col-sm-5(type="range", min="0", max="100", value="100")
+                        input.col-sm-5.homework__faithfulness-number#faithfulness-number_js(type="number", max="100", min="0", name="faithfulness", value="100")
                     .form-group.row
                         label.col-sm-2(for="") 완성도 :
                         input.col-sm-5(type="number", max="100", min="0", name="homework_completeLevel", value="100")
-                        input.col-sm-5(type="range", min="0", max="100", value="100")
                 fieldset
                     legend 학습
-                    .form-group.row
+                    button#add_unit_js 추가
+                    .form-group.row.form__study-unit
                         label(for="") 학습단원 :
-                        input(type="textarea", name="unit")
-                        button#select_unit_js 선택
+                        input(type="text", name="unit")
                     .form-grop.row
                         label.col-sm-2(for="") 학습량 :
                         input.col-sm-5(type="number", max="100", min="0", name="volume", value="100")
-                        input.col-sm-5(type="range", min="0", max="100", value="100")
                     .form-grop.row
                         label.col-sm-2(for="") 완성도 :
                         input.col-sm-5(type="number", max="100", min="0", name="study_completeLevel", value="100")
-                        input.col-sm-5(type="range", min="0", max="100", value="100")
                 button#test_insert_js 테스트입력
                 .test
                 .form-group.row

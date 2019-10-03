@@ -17,10 +17,10 @@ const LessonSchema = new mongoose.Schema({
         type: String,
         enum: ['출석', '지각', '결석']
     },
-    homeWork: {
+    homework: {
         fulfillment: {
             type: String,
-            enum: ['우수', '양호', '보통', '불량']
+            enum: ['우수', '양호', '보통', '불량', '없음']
         },
         faithfulness: {
             type: Number,

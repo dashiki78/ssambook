@@ -1,6 +1,6 @@
 const lesson_new_form = document.getElementById("lesson_newForm_js");
 const test_insert_btn = document.getElementById("test_insert_js");
-const select_unit_btn = document.getElementById("select_unit_js");
+const addUnit_btn = document.getElementById("add_unit_js");
 
 let test_form = `
                 <div class="form-group row test">
@@ -17,6 +17,11 @@ let test_form = `
                 </div>
                   `;
 
+let test_unit_form = `
+                     <label>학습단원 : </label>
+                     <input type="text", name="unit"></input>
+                     `;
+
 const insertTest = (event) => {
     event.preventDefault();
     const test = document.getElementsByClassName('test')[0];
@@ -28,14 +33,17 @@ const insertTest = (event) => {
     test.appendChild(test_element);
 };
 
-const selectUnitList = (event) => {
-    event.preventDefault();
-    alert("hohoho");
-};
+const addUnitfn = (event) => {
+  event.preventDefault();
+  const unit_form = document.getElementsByClassName('form__study-unit')[0];
+  let test_unit_element = document.createElement("div");
+  test_unit_element.innerHTML = test_unit_form;
+  unit_form.append(test_unit_element);
+}
 
 const init = () => {
     test_insert_btn.addEventListener("click", insertTest);
-    select_unit_btn.addEventListener("click", selectUnitList);
+    addUnit_btn.addEventListener("click", addUnitfn);
 };
 
 if (lesson_new_form) {

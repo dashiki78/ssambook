@@ -4,8 +4,7 @@ import routes from "../routes";
 
 export const configLesson = async (req, res) => {
     try {
-        const students = await Students.find({teacher: req.user.id});
-        res.render("lesson/lessonConfig", { students: students });
+        res.render("lesson/lessonConfig");
     } catch (error) {
         req.flash("error", error.message);
         res.redirect(routes.home);
@@ -21,8 +20,9 @@ export const getNewLesson = async (req, res) => {
         const existDiary = await LessonDiary.find({student: student_id, date});
         console.log(existDiary);
         if (existDiary.length !==0) {
+            const date = existDiary[0].date;
             req.flash("info", "이미 작성한 학습일지가 존재합니다");
-            res.redirect(routes.home);
+            res.render("lesson/lessonEditDiary", { existDiary: existDiary[0], date });
             return ;
         }
     } catch (error) {
@@ -111,4 +111,104 @@ export const postNewLesson = async (req, res) => {
             req.flash("error", error.message);
         }
     res.redirect(routes.home);
+}
+
+export const getEditLesson = async (req, res) => {
+    const {
+        params : {
+            lesson_id
+        }
+    } = req;
+    console.log(lesson_id);
+    const diary = await LessonDiary.findById(lesson_id);
+    var year = diary.date.getFullYear();
+    var month = diary.date.getMonth()+1
+    var day = diary.date.getDate();
+    if(month < 10){
+        month = "0"+month;
+    }
+    if(day < 10){
+        day = "0"+day;
+    }
+    var date = year+"-"+month+"-"+day;
+    res.render("lesson/lessonEditDiary", { diary, date });
+}
+
+export const postEditLesson = async (req, res) => {
+    const {
+        body : {
+            student_id,
+            date,
+            name,
+            studyType,
+            attend,
+            fulfillment,
+            faithfulness,
+            homework_completeLevel,
+            unit,
+            volume,
+            study_completeLevel,
+            test_title,
+            test_score,
+            test_note,
+            note
+        },
+        params : { lesson_id }
+    } = req;
+    console.log(lesson_id,
+        student_id,
+        date,
+        name,
+        studyType,
+        attend,
+        fulfillment,
+        faithfulness,
+        homework_completeLevel,
+        unit,
+        volume,
+        study_completeLevel,
+        test_title,
+        test_score,
+        test_note,
+        note);
+    let test_list = [];
+    for ( let test in test_title ) {
+        const test_unit = { 
+            title : test_title[test],
+            score : test_score[test],
+            note : test_note[test]
+        }
+        test_list.push(test_unit);
+    }
+    try {
+        const diary = await LessonDiary.findOneAndUpdate({_id:lesson_id}, {
+            student: student_id,
+                date,
+                name,
+                studyType,
+                attend,
+                homework: {
+                    fulfillment,
+                    faithfulness,
+                    completeLevel: homework_completeLevel
+                },
+                study: {
+                    unit : [],
+                    volume,
+                    completeLevel: study_completeLevel
+                },
+                test: [],
+                note
+        });
+        for (let test in test_list) {
+            diary.test.push(test_list[test]);
+        }
+        diary.study.unit.push(unit);
+        diary.save();
+        console.log(diary);
+    } catch (error) {
+        req.flash("error", error.message);
+        res.redirect(`/lesson${routes.lessonConfig}`);
+    }
+    res.redirect(`/lesson${routes.lessonConfig}`);
 }

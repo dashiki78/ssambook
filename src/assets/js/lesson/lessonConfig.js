@@ -11,15 +11,27 @@ const newDiarybtn = document.getElementById('new_input_diary');
 let studentListObj = {};
 let studentId = "";
 let diaryDate = "";
+let exist_toggle = false;
 
 const getStudent = async () => {
     try {
         studentListObj = await axio.get('/api/getstudent');
-        console.log(studentListObj.data);        
+        console.log(studentListObj.data);
+        if (studentListObj.data.length === 0) {
+            alert("관리할 학생이 없습니다")
+        }        
         insertStudent(undefined, undefined);
     } catch (error) {
         console.log(error); 
     }
+}
+
+const insertStudentList = (studentName, diary) => {
+    let a = document.createElement("a");
+    a.className = "name";
+    a.innerHTML = checkDiary(studentName, diary);
+    a.addEventListener("click", chooseNamefnc);
+    studentList.appendChild(a);
 }
 
 const insertStudent = (day, name) => {
@@ -28,11 +40,8 @@ const insertStudent = (day, name) => {
         for (let student in studentListObj.data) {
             if (studentListObj.data[student].name.indexOf(name) != -1) {
                 const studentName = studentListObj.data[student].name;
-                let a = document.createElement("a");
-                a.className = "name";
-                a.innerHTML = `<li>${studentName}</li>`;
-                a.addEventListener("click", chooseNamefnc);
-                studentList.appendChild(a);
+                const diary = studentListObj.data[student].lessonDiary
+                insertStudentList(studentName, diary);
             }
         }
         return ;
@@ -43,11 +52,8 @@ const insertStudent = (day, name) => {
             if (studentListObj.data[student].lessonDay){
                 if (studentListObj.data[student].lessonDay.includes(day)) {
                     const studentName = studentListObj.data[student].name;
-                    let a = document.createElement("a");
-                    a.className = "name";
-                    a.innerHTML = `<li>${studentName}</li>`;
-                    a.addEventListener("click", chooseNamefnc);
-                    studentList.appendChild(a);
+                    const diary = studentListObj.data[student].lessonDiary
+                    insertStudentList(studentName, diary);
                 }
             }
         }
@@ -57,11 +63,8 @@ const insertStudent = (day, name) => {
             if (studentListObj.data[student].lessonDay){
                 if (studentListObj.data[student].lessonDay.includes(day)) {
                     const studentName = studentListObj.data[student].name;
-                    let a = document.createElement("a");
-                    a.className = "name";
-                    a.innerHTML = `<li>${studentName}</li>`;
-                    a.addEventListener("click", chooseNamefnc);
-                    studentList.appendChild(a);
+                    const diary = studentListObj.data[student].lessonDiary
+                    insertStudentList(studentName, diary);
                 }
             }
         }
@@ -71,11 +74,8 @@ const insertStudent = (day, name) => {
             if (studentListObj.data[student].lessonDay){
                 if (studentListObj.data[student].lessonDay.includes(day)) {
                     const studentName = studentListObj.data[student].name;
-                    let a = document.createElement("a");
-                    a.className = "name";
-                    a.innerHTML = `<li>${studentName}</li>`;
-                    a.addEventListener("click", chooseNamefnc);
-                    studentList.appendChild(a);
+                    const diary = studentListObj.data[student].lessonDiary
+                    insertStudentList(studentName, diary);
                 }
             }
         }
@@ -85,11 +85,8 @@ const insertStudent = (day, name) => {
             if (studentListObj.data[student].lessonDay){
                 if (studentListObj.data[student].lessonDay.includes(day)) {
                     const studentName = studentListObj.data[student].name;
-                    let a = document.createElement("a");
-                    a.className = "name";
-                    a.innerHTML = `<li>${studentName}</li>`;
-                    a.addEventListener("click", chooseNamefnc);
-                    studentList.appendChild(a);
+                    const diary = studentListObj.data[student].lessonDiary
+                    insertStudentList(studentName, diary);
                 }
             }
         }
@@ -99,11 +96,8 @@ const insertStudent = (day, name) => {
             if (studentListObj.data[student].lessonDay){
                 if (studentListObj.data[student].lessonDay.includes(day)) {
                     const studentName = studentListObj.data[student].name;
-                    let a = document.createElement("a");
-                    a.className = "name";
-                    a.innerHTML = `<li>${studentName}</li>`;
-                    a.addEventListener("click", chooseNamefnc);
-                    studentList.appendChild(a);
+                    const diary = studentListObj.data[student].lessonDiary
+                    insertStudentList(studentName, diary);
                 }
             }
         }
@@ -113,11 +107,8 @@ const insertStudent = (day, name) => {
             if (studentListObj.data[student].lessonDay){
                 if (studentListObj.data[student].lessonDay.includes(day)) {
                     const studentName = studentListObj.data[student].name;
-                    let a = document.createElement("a");
-                    a.className = "name";
-                    a.innerHTML = `<li>${studentName}</li>`;
-                    a.addEventListener("click", chooseNamefnc);
-                    studentList.appendChild(a);
+                    const diary = studentListObj.data[student].lessonDiary
+                    insertStudentList(studentName, diary);
                 }
             }
         }
@@ -127,11 +118,8 @@ const insertStudent = (day, name) => {
             if (studentListObj.data[student].lessonDay){
                 if (studentListObj.data[student].lessonDay.includes(day)) {
                     const studentName = studentListObj.data[student].name;
-                    let a = document.createElement("a");
-                    a.className = "name";
-                    a.innerHTML = `<li>${studentName}</li>`;
-                    a.addEventListener("click", chooseNamefnc);
-                    studentList.appendChild(a);
+                    const diary = studentListObj.data[student].lessonDiary
+                    insertStudentList(studentName, diary);
                 }
             }
         }
@@ -141,11 +129,8 @@ const insertStudent = (day, name) => {
             if (studentListObj.data[student].lessonDay){
                 if (studentListObj.data[student].lessonDay.includes(day)) {
                     const studentName = studentListObj.data[student].name;
-                    let a = document.createElement("a");
-                    a.className = "name";
-                    a.innerHTML = `<li>${studentName}</li>`;
-                    a.addEventListener("click", chooseNamefnc);
-                    studentList.appendChild(a);
+                    const diary = studentListObj.data[student].lessonDiary;
+                    insertStudentList(studentName, diary);
                 }
             }
         }
@@ -153,14 +138,10 @@ const insertStudent = (day, name) => {
         console.log('all');
         for (let student in studentListObj.data) {
             const studentName = studentListObj.data[student].name;
-            let a = document.createElement("a");
-            a.className = "name";
-            a.innerHTML = `<li>${studentName}</li>`;
-            a.addEventListener("click", chooseNamefnc);
-            studentList.appendChild(a);
+            const diary = studentListObj.data[student].lessonDiary;
+            insertStudentList(studentName, diary);
         }
     }
-    console.log(name);
 }
 
 const getDay = () => {
@@ -177,6 +158,12 @@ const changeStudentList = (event) => {
 
 const chooseNamefnc = (event) => {
     const selectName =  event.target.innerText;
+    const searchName_next = event.target.nextSibling.className;
+    if (searchName_next === 'fas fa-plus') {
+        exist_toggle = true;
+    } else if (searchName_next === 'fas fa-check') {
+        exist_toggle = false;
+    }
     chooseName.value = selectName;
 }
 
@@ -207,21 +194,34 @@ const searchNamefnc = (event) => {
 const newDiaryMovefnc = (event) => {
     event.preventDefault();
     const name_ch = chooseName.value;
-    if (name_ch) {
-        for (let value of studentListObj.data) {
-            if (value.name === name_ch) {
-                studentId = value._id;
-                console.log(studentId);
-            }
+        if (name_ch) {
+            if (exist_toggle === true) {
+                for (let value of studentListObj.data) {
+                    if (value.name === name_ch) {
+                        studentId = value._id;
+                    }
+                }
+                if (chooseDate.value) {
+                    diaryDate = chooseDate.value;
+                    location.href="new/"+studentId+"/"+diaryDate+"?name="+chooseName.value;
+                }        
+            } else if (exist_toggle === false) {
+                for (let value of studentListObj.data) {
+                    if (value.name === name_ch) {
+                        for (let diary of value.lessonDiary) {
+                            console.log(diary.date);
+                            const diary_day = diary.date.split("T",1)[0]
+                            if (chooseDate.value === diary_day) {
+                                location.href="edit/"+diary._id;
+                            }
+                        }
+                    }
+                }
+            } 
+        } else {
+            alert("대상을 지정하세요");
         }
-        if (chooseDate.value) {
-            diaryDate = chooseDate.value;
-            location.href="new/"+studentId+"/"+diaryDate+"?name="+chooseName.value;
-        }        
-    } else {
-        alert("대상을 지정하세요");
     }
-}
 
 const removeListfnc = () => {
     while (studentList.firstChild) {
@@ -229,12 +229,30 @@ const removeListfnc = () => {
     }
 }
 
+const checkDiary = (name, diary) => {
+    const date = chooseDate.value;
+    for (let diary_unit in diary) {
+        const today = diary[diary_unit].date.split("T", 1)[0];
+        if (date === today) {
+            return `<li>${name}</li><i class="fas fa-check"></i>`;
+        }
+    }
+    return `<li>${name}</li><i class="fas fa-plus"></i>`;
+}
+
+const changeStudentOfDate = () => {
+    selectDay.value="전체요일";
+    insertStudent('전체요일', undefined);
+}
+
 const init = () => {
     getStudent();
     selectDay.addEventListener("change", changeStudentList);
     searchName.addEventListener("keyup", searchNamefnc);
     newDiarybtn.addEventListener("click", newDiaryMovefnc);
+    chooseDate.addEventListener("change", changeStudentOfDate);
     autoDate();
+    checkDiary();
 }
 
 if (lessonClass) {

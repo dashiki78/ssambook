@@ -61,6 +61,13 @@ const routes = {
     lesson: LESSON,
     lessonConfig: LESSON_CONFIG,
     lessonNew: LESSON_NEW,
+    lessonEdit: (lesson_id) => {
+        if (lesson_id) {
+            return `/edit/${lesson_id}`;
+        } else {
+            return LESSON_EDIT;
+        }
+    },
 
     api: API,
     getStudent: STUDENT_GET
