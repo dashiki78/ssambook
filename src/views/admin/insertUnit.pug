@@ -1,0 +1,16 @@
+extends ../layouts/main
+
+block content
+    .container
+        .form-container
+            form.form(action=`/admin${routes.insertUnit}`, method="post")
+                .form-group.row
+                    label(for="") 과목 :
+                    input(type="text", name="subject")
+                .form-group.row
+                    label(for="") 학년 :
+                    input(type="text", name="grade")
+                .form-group.row
+                    label(for="") 단원입력 :
+                    textarea(name="unit", cols="30", rows="70")
+                input(type="submit", value="전송")

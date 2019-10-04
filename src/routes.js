@@ -28,6 +28,11 @@ const LESSON_DELETE = "/delete/:lesson_id";
 // api
 const API = "/api";
 const STUDENT_GET = "/getstudent";
+const STUDY_UNIT_GET = "/getstudyunit";
+
+// 관리자
+const ADMIN = "/admin";
+const STUDYUNIT_INSERT = "/insertunit"
 
 const routes = {
     home: HOME,
@@ -70,7 +75,11 @@ const routes = {
     },
 
     api: API,
-    getStudent: STUDENT_GET
+    getStudent: STUDENT_GET,
+    getStudyUnit: STUDY_UNIT_GET,
+
+    admin: ADMIN,
+    insertUnit: STUDYUNIT_INSERT
 };
 
 export default routes;

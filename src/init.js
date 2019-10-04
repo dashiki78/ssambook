@@ -8,6 +8,7 @@ dotenv.config();
 import "./models/User";
 import "./models/Students";
 import "./models/LessonDiary";
+import "./models/StudyUnit";
 
 const PORT = process.env.PORT || 4000;
 

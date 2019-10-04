@@ -15,6 +15,7 @@ import globalRouter from "./routers/globalRouter";
 import studentsRouter from "./routers/studentsRouter";
 import lessonRouter from "./routers/lessonRouter";
 import apiRouter from "./routers/apiRouter";
+import adminRouter from "./routers/adminRouter";
 
 import "./passport";
 
@@ -48,5 +49,6 @@ app.use(routes.home, globalRouter);
 app.use(routes.students, studentsRouter);
 app.use(routes.lesson, lessonRouter);
 app.use(routes.api, apiRouter);
+app.use(routes.admin, adminRouter);
 
 export default app;

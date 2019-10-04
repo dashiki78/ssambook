@@ -53,10 +53,10 @@ block content
                         input.col-sm-5(type="number", max="100", min="0", name="homework_completeLevel", value="100")
                 fieldset
                     legend 학습
-                    button#add_unit_js 추가
                     .form-group.row.form__study-unit
                         label(for="") 학습단원 :
-                        input(type="text", name="unit")
+                        textarea#study_unit_input_js(cols="30", rows="10", name="unit")
+                    button#select_unit_js(type="button", data-toggle="modal", data-target="#unitModal") 선택
                     .form-grop.row
                         label.col-sm-2(for="") 학습량 :
                         input.col-sm-5(type="number", max="100", min="0", name="volume", value="100")
@@ -69,3 +69,37 @@ block content
                     label(for="") 비고 :
                     textarea(name="note", cols="70", rows="10")
                 input(type="submit")
+
+    //- 모달창
+    .modal.fade#unitModal(tabindex="-1", role="dialog", aria-labelledby="unitModal", aria-hidden="true")
+        .modal-dialog.modal-dialog-scrollable(role="document")
+            .modal-content
+                .modal-header
+                    h5.modal-title#unitModalTitle 단원선택창
+                    select#get_unit_modal_js(name="select_unit")
+                        option(value="") 과정선택
+                        option(value="초1-1") 초1-1
+                        option(value="초1-2") 초1-2
+                        option(value="초2-1") 초2-2
+                        option(value="초2-2") 초2-2
+                        option(value="초3-1") 초3-1
+                        option(value="초3-2") 초3-2
+                        option(value="초4-1") 초4-1
+                        option(value="초4-2") 초4-2
+                        option(value="초5-1") 초5-1
+                        option(value="초5-2") 초5-2
+                        option(value="초6-1") 초6-1
+                        option(value="초6-2") 초6-2
+                        option(value="중1-1") 중1-1
+                        option(value="중1-2") 중1-2
+                        option(value="중2-1") 중2-1
+                        option(value="중2-2") 중2-2
+                        option(value="중3-1") 중3-1
+                        option(value="중3-2") 중3-3
+                    button.close(type="button", data-dismiss="modal", aria-label="Close")
+                        span(aria-hidden="true") &times;
+                .modal-body
+                    div
+                        ul#unit_list_js
+                .modal-footer
+                    button(type="button", data-dismiss="modal") 닫기

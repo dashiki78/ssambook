@@ -23,3 +23,12 @@ export const localsMiddleware = (req, res, next) => {
       res.redirect(routes.home);
     }
   };
+
+  export const onlyAdmin = (req, res, next) => {
+    if (req.user.email === process.env.ADMIN_EMAIL) {
+      next();
+    } else {
+      req.flash("error", "경고합니다 관리권한이 없는데 접근하셨네요");
+      res.redirect(routes.home);
+    }
+  }
