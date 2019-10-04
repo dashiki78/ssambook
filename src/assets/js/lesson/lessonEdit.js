@@ -1,6 +1,9 @@
+import axio from "axios";
+
 const lessonEditForm = document.getElementById("lesson_EditForm_js");
 const test_insert_btn = document.getElementById("test_insert_js");
-const addUnit_btn = document.getElementById("add_unit_js");
+const get_unit_btn = document.getElementById("get_unit_modal_js");
+const unit_textarea = document.getElementById("study_unit_input_js");
 
 let test_form = `
                 <div class="form-group row test">
@@ -16,33 +19,42 @@ let test_form = `
                   <textarea cols="50" rows="5" name="test_note"></textarea>
                 </div>
                   `;
-let test_unit_form = `
-                  <label>학습단원 : </label>
-                  <input type="text", name="unit"></input>
-                  `;
 
 const insertTest = (event) => {
     event.preventDefault();
     const test = document.getElementsByClassName('test')[0];
-    alert("테스트를 입력합니다");
-    console.log(test);
     let test_element = document.createElement("div");
     test_element.className = "test__form";
     test_element.innerHTML = test_form;
     test.appendChild(test_element);
 };
 
-const addUnitfn = (event) => {
-    event.preventDefault();
-    const unit_form = document.getElementsByClassName('form__study-unit')[0];
-    let test_unit_element = document.createElement("div");
-    test_unit_element.innerHTML = test_unit_form;
-    unit_form.append(test_unit_element);
+const insertUnit = (event) => {
+  const select_unit = event.target.innerText;
+  unit_textarea.value += select_unit+"\r\n";
+}
+
+const getUnitList = async (event) => {
+  const grade = event.target.value;
+  let study_unit_list = {};
+  try {
+    const studyUnitObj = await axio.get(`/api/getstudyunit?grade=${grade}`);
+    study_unit_list = studyUnitObj.data;
+  } catch (error) {
+    console.log(error);
   }
+  const unit_list = document.getElementById("unit_list_js");
+  for (let i in study_unit_list) {
+    let unit_li = document.createElement("li");
+    unit_li.innerText = `${grade} ${study_unit_list[i].title}`;
+    unit_li.addEventListener("click", insertUnit);
+    unit_list.appendChild(unit_li);
+  }
+}
 
 const init = () => {
     test_insert_btn.addEventListener("click", insertTest);
-    addUnit_btn.addEventListener("click", addUnitfn);
+    get_unit_btn.addEventListener("change", getUnitList);
 };
 
 if (lessonEditForm) {

@@ -18,7 +18,6 @@ export const getNewLesson = async (req, res) => {
     } = req;
     try {
         const existDiary = await LessonDiary.find({student: student_id, date});
-        console.log(existDiary);
         if (existDiary.length !==0) {
             const date = existDiary[0].date;
             req.flash("info", "이미 작성한 학습일지가 존재합니다");
@@ -51,21 +50,10 @@ export const postNewLesson = async (req, res) => {
             note
         }
     } = req;
-    console.log(student_id,
-        date,
-        name,
-        studyType,
-        attend,
-        fulfillment,
-        faithfulness,
-        homework_completeLevel,
-        unit,
-        volume,
-        study_completeLevel,
-        test_title,
-        test_score,
-        test_note,
-        note);
+    const unit_array = unit.split(/\r\n|\r|\n/);
+    const filtered_unit_array = unit_array.filter(function (el) {
+        return el !== '';
+    })
     try {
         const existDiary = await LessonDiary.find({student: student_id, date: date});
         if ( existDiary.length === 0 ) {
@@ -81,7 +69,7 @@ export const postNewLesson = async (req, res) => {
                     completeLevel: homework_completeLevel
                 },
                 study: {
-                    unit,
+                    unit : [],
                     volume,
                     completeLevel: study_completeLevel
                 },
@@ -89,13 +77,15 @@ export const postNewLesson = async (req, res) => {
                 note,
                 teacher: req.user.id
             });
+            for (let i=0; i<filtered_unit_array.length; i++) {
+                newLessonDiary.study.unit.push(filtered_unit_array[i]);
+            }
             if (typeof(test_title)==='string') {
                 newLessonDiary.test = {
                     title: test_title,
                     score: test_score,
                     note: test_note
                 };
-                newLessonDiary.save();
             } else if (typeof(test_title)==='object') {
                 for (let test in test_title) {
                     newLessonDiary.test.push({
@@ -104,8 +94,8 @@ export const postNewLesson = async (req, res) => {
                         note: test_note[test]
                     })
                 }
-                newLessonDiary.save();
             }
+            newLessonDiary.save();
             const student = await Students.findById(student_id);
             student.lessonDiary.push(newLessonDiary.id);
             student.save();                 
@@ -124,7 +114,6 @@ export const getEditLesson = async (req, res) => {
             lesson_id
         }
     } = req;
-    console.log(lesson_id);
     const diary = await LessonDiary.findById(lesson_id);
     var year = diary.date.getFullYear();
     var month = diary.date.getMonth()+1
@@ -136,7 +125,12 @@ export const getEditLesson = async (req, res) => {
         day = "0"+day;
     }
     var date = year+"-"+month+"-"+day;
-    res.render("lesson/lessonEditDiary", { diary, date });
+    const unit = diary.study.unit
+    let unit_string ='';
+    for (let val of unit) {
+        unit_string += val+"\r\n";
+    }
+    res.render("lesson/lessonEditDiary", { diary, date, unit_string });
 }
 
 export const postEditLesson = async (req, res) => {
@@ -160,22 +154,10 @@ export const postEditLesson = async (req, res) => {
         },
         params : { lesson_id }
     } = req;
-    console.log(lesson_id,
-        student_id,
-        date,
-        name,
-        studyType,
-        attend,
-        fulfillment,
-        faithfulness,
-        homework_completeLevel,
-        unit,
-        volume,
-        study_completeLevel,
-        test_title,
-        test_score,
-        test_note,
-        note);
+    const unit_array = unit.split(/\r\n|\r|\n/);
+    const filtered_unit_array = unit_array.filter(function (el) {
+        return el !== '';
+    })
     try {
         const diary = await LessonDiary.findOneAndUpdate({_id:lesson_id}, {
             student: student_id,
@@ -196,12 +178,8 @@ export const postEditLesson = async (req, res) => {
                 test: [],
                 note
         });
-        if (typeof(unit)==='string') {
-            diary.study.unit.push(unit);            
-        } else if (typeof(unit)==='object') {
-            for (let val in unit) {
-                diary.study.unit.push(unit[val])
-            }
+        for (let i=0; i<filtered_unit_array.length; i++) {
+            diary.study.unit.push(filtered_unit_array[i]);
         }
         if (typeof(test_title)==='string') {
             diary.test = {

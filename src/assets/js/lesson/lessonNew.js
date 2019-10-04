@@ -24,7 +24,6 @@ const insertTest = (event) => {
     event.preventDefault();
     const test = document.getElementsByClassName('test')[0];
     alert("테스트를 입력합니다");
-    console.log(test);
     let test_element = document.createElement("div");
     test_element.className = "test__form";
     test_element.innerHTML = test_form;
@@ -37,7 +36,6 @@ const insertUnit = (event) => {
 }
 
 const getUnitList = async (event) => {
-  console.log(event.target.value);
   const grade = event.target.value;
   let study_unit_list = {};
   try {
@@ -46,7 +44,6 @@ const getUnitList = async (event) => {
   } catch (error) {
     console.log(error);
   }
-  console.log(study_unit_list);
   const unit_list = document.getElementById("unit_list_js");
   for (let i in study_unit_list) {
     let unit_li = document.createElement("li");
