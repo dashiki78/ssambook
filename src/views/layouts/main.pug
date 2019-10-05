@@ -22,7 +22,11 @@ html
                                 a.dropdown-item(href=`/students${routes.studentsNew}`) 학생등록
                                 a.dropdown-item(href=`/students${routes.studentsList}`) 학생조회/수정
                     li.nav-item
-                        a.nav-link(href=`/lesson${routes.lessonConfig}`) 수업관리
+                        .dropdown
+                            a.nav-link.dropdown-toggle(data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") 수업관리
+                            .dropdown-menu
+                                a.dropdown-item(href=`/lesson${routes.lessonConfig}`) 학습일지입력/수정
+                                a.dropdown-item(href=`/lesson${routes.lessonSearch}`) 학습일지조회/리포트작성
                 ul.navbar-nav
                     if !loggedUser    
                         li.nav-item

@@ -21,14 +21,16 @@ const STUDENTS_DELETE = "/delete/:student_id"
 const LESSON = "/lesson";
 const LESSON_CONFIG ="/config";
 const LESSON_NEW = "/new/:student_id/:date";
-const LESSON_LIST = "/list/:start_date/:end_date";
 const LESSON_EDIT = "/edit/:lesson_id";
+const LESSON_SEARCH = "/search";
 const LESSON_DELETE = "/delete/:lesson_id";
 
 // api
 const API = "/api";
 const STUDENT_GET = "/getstudent";
 const STUDY_UNIT_GET = "/getstudyunit";
+const STUDENT_NAME_GET = "/getstudentname";
+const LESSON_READ = "/list/:start_date/:end_date";
 
 // 관리자
 const ADMIN = "/admin";
@@ -39,12 +41,12 @@ const routes = {
     join: JOIN,
     login: LOGIN,
     logout: LOGOUT,
-
+    // 유저
     users: USERS,
     userDetail: USER_DETAIL,
     editProfile: EDIT_PROFILE,
     changePassword: CHANGE_PASSWORD,
-    
+    // 학생
     students: STUDENTS,
     studentsNew: STUDENTS_NEW,
     studentsList: STUDENTS_LIST,
@@ -63,6 +65,7 @@ const routes = {
             return STUDENTS_DELETE;
         }
     },
+    // 학습일지
     lesson: LESSON,
     lessonConfig: LESSON_CONFIG,
     lessonNew: LESSON_NEW,
@@ -73,11 +76,13 @@ const routes = {
             return LESSON_EDIT;
         }
     },
-
+    lessonSearch: LESSON_SEARCH,
+    // api
     api: API,
     getStudent: STUDENT_GET,
     getStudyUnit: STUDY_UNIT_GET,
-
+    getStudentName: STUDENT_NAME_GET,
+    // 관리자
     admin: ADMIN,
     insertUnit: STUDYUNIT_INSERT
 };

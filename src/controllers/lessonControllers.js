@@ -203,3 +203,7 @@ export const postEditLesson = async (req, res) => {
     }
     res.redirect(`/lesson${routes.lessonConfig}`);
 }
+
+export const getSearchLesson = (req, res) => {
+    res.render("lesson/lessonSearch");
+}

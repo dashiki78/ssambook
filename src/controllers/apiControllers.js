@@ -19,6 +19,16 @@ export const getStudyUnit = async (req, res) => {
         res.json(studyUnitList);
         res.status(200);        
     } catch (error) {
-        res.status(505);
+        res.status(404);
+    }
+}
+
+export const getStudentName = async (req, res) => {
+    try {
+        const student = await Students.find({ teacher: req.user.id, status: "재원생"}).select('name');
+        res.json(student);
+        res.status(200);
+    } catch (error) {
+        res.status(404);
     }
 }
