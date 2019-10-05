@@ -30,7 +30,7 @@ const API = "/api";
 const STUDENT_GET = "/getstudent";
 const STUDY_UNIT_GET = "/getstudyunit";
 const STUDENT_NAME_GET = "/getstudentname";
-const LESSON_READ = "/list/:start_date/:end_date";
+const LESSON_READ = "/list/:start_date/:end_date/:student_id";
 
 // 관리자
 const ADMIN = "/admin";
@@ -82,6 +82,7 @@ const routes = {
     getStudent: STUDENT_GET,
     getStudyUnit: STUDY_UNIT_GET,
     getStudentName: STUDENT_NAME_GET,
+    getLessonDiaryList: LESSON_READ,
     // 관리자
     admin: ADMIN,
     insertUnit: STUDYUNIT_INSERT

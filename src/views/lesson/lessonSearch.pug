@@ -8,10 +8,12 @@ block content
                 input#search_name_input_js(type="text")
             .serachLesson__date-search
                 label(for="") 조회기간 :
-                input(type="date")
+                input#start_date_js(type="date")
                 span ~
-                input(type="date")
+                input#end_date_js(type="date")
             .searchLesson_name-get
                 label(for="") 조회대상 :
                 input#search_name_push_js(type="text", readonly)
-                button(type="button") 조회
+                input#search_id_push_js(type="text", hidden)
+                button#search_lessonDiary_js(type="button") 조회
+        .lessonDiaryList#lessonDiary_list_js
