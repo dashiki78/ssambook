@@ -14,7 +14,6 @@ export const postInsertUnit = async (req, res) => {
         }
     } = req;
     const unit_array = unit.split(/\r\n|\r|\n/);
-    console.log(unit_array);
     try {
         const newUnit = await StudyUnit.create({
             subject,

@@ -2,7 +2,7 @@ import LessonDiary from "../models/LessonDiary";
 import Students from "../models/Students";
 import routes from "../routes";
 
-export const configLesson = async (req, res) => {
+export const configLesson = (req, res) => {
     try {
         res.render("lesson/lessonConfig");
     } catch (error) {
@@ -114,23 +114,28 @@ export const getEditLesson = async (req, res) => {
             lesson_id
         }
     } = req;
-    const diary = await LessonDiary.findById(lesson_id);
-    var year = diary.date.getFullYear();
-    var month = diary.date.getMonth()+1
-    var day = diary.date.getDate();
-    if(month < 10){
-        month = "0"+month;
+    try {
+        const diary = await LessonDiary.findById(lesson_id);
+        var year = diary.date.getFullYear();
+        var month = diary.date.getMonth()+1
+        var day = diary.date.getDate();
+        if(month < 10){
+            month = "0"+month;
+        }
+        if(day < 10){
+            day = "0"+day;
+        }
+        var date = year+"-"+month+"-"+day;
+        const unit = diary.study.unit
+        let unit_string ='';
+        for (let val of unit) {
+            unit_string += val+"\r\n";
+        }
+        res.render("lesson/lessonEditDiary", { diary, date, unit_string });        
+    } catch (error) {
+        req.flash("error", error.message);
+        res.redirect(routes.home);
     }
-    if(day < 10){
-        day = "0"+day;
-    }
-    var date = year+"-"+month+"-"+day;
-    const unit = diary.study.unit
-    let unit_string ='';
-    for (let val of unit) {
-        unit_string += val+"\r\n";
-    }
-    res.render("lesson/lessonEditDiary", { diary, date, unit_string });
 }
 
 export const postEditLesson = async (req, res) => {

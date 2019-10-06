@@ -37,9 +37,16 @@
     "webpack-cli": "^3.3.9"
   },
   "scripts": {
-    "dev:server": "nodemon --exec babel-node src/init.js --delay 2 --ignore '.scss' --ignore 'static'",
+    "dev:server": "nodemon --exec babel-node src/init.js  --delay 2 --ignore '.scss' --ignore 'static'",
     "dev:assets": "cd src && webpack --mode development -w",
-    "build:assets": "cd src && webpack --mode production"
+    "build:assets": "cd src && webpack --mode production",
+    "build:server": "babel src --out-dir build --ignore 'src/assets','src/static','src/webpack.config.js'",
+    "copyAll": "cp -R src/static build && cp -R src/views build",
+    "build": "npm run build:server && npm run build:assets && npm run copyAll",
+    "prebuild": "rm -rf build",
+    "tunnel": "lt --port 4000",
+    "start": "PRODUCTION=true node build/init.js",
+    "prestart": "npm run build"
   },
   "devDependencies": {
     "eslint": "^6.4.0",

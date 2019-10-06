@@ -13,8 +13,12 @@ let studentName = {};
 let diarys = {};
 
 const getStudentName = async () => {
-    const studentNameObj = await axio.get("/api/getstudentname");
-    studentName = studentNameObj.data;
+    try {
+        const studentNameObj = await axio.get("/api/getstudentname");
+        studentName = studentNameObj.data;        
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 const serchNameInput = (event) => {
