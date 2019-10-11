@@ -1,74 +1,73 @@
 extends ../layouts/main
 
 block content
-    .container
-        h2 #{name}학생의 #{date} 학습일지 작성
+    .container.lesson-new-container
         .form-container
+            h2 #{name}학생의 #{date} 학습일지 작성
             form.form#lesson_newForm_js(action=`/lesson${routes.lessonNew}`, method="post")
                 input(type="text", name="student_id", value=student_id, hidden)
                 input(type="text", name="name", value=name, hidden)
                 input(type="date", name="date", value=date, hidden)
                 .form-group
                     .form-check.form-check-inline
-                        label(for="") 정규
-                        input(type="radio", name="studyType", value="정규", checked)
+                        label.col-form-label(for="") 정규
+                        input.form-check-input(type="radio", name="studyType", value="정규", checked)
                     .form-check.form-check-inline
-                        label(for="") 보충
-                        input(type="radio", name="studyType", value="보충")
+                        label.col-form-label(for="") 보충
+                        input.form-check-input(type="radio", name="studyType", value="보충")
                 .form-group
                     .form-check.form-check-inline
-                        label(for="") 출석
-                        input(type="radio", name="attend", value="출석", checked)
+                        label.col-form-label(for="") 출석
+                        input.form-check-input(type="radio", name="attend", value="출석", checked)
                     .form-check.form-check-inline
-                        label(for="") 지각
-                        input(type="radio", name="attend", value="지각")
+                        label.col-form-label(for="") 지각
+                        input.form-check-input(type="radio", name="attend", value="지각")
                     .form-check.form-check-inline
-                        label(for="") 결석
-                        input(type="radio", name="attend", value="결석")
+                        label.col-form-label(for="") 결석
+                        input.form-check-input(type="radio", name="attend", value="결석")
                 fieldset.homework
                     legend 숙제
-                    .form-group.row.homework__fulfillment
-                        label.col-sm-2(for="") 이행 :
-                        .col-sm-10
-                            .form-check.form-check-inline
-                                label(for="") 우수
-                                input(type="radio", name="fulfillment", value="우수", checked)
-                            .form-check.form-check-inline
-                                label(for="") 양호
-                                input(type="radio", name="fulfillment", value="양호")
-                            .form-check.form-check-inline
-                                label(for="") 보통
-                                input(type="radio", name="fulfillment", value="보통")
-                            .form-check.form-check-inline
-                                label(for="") 불량
-                                input(type="radio", name="fulfillment", value="불량")
-                            .form-check.form-check-inline
-                                label(for="") 없음
-                                input(type="radio", name="fulfillment", value="없음")
-                    .form-group.row.homework__faithfulness
-                        label.col-sm-2(for="") 충실도 :
-                        input.col-sm-5.homework__faithfulness-number#faithfulness-number_js(type="number", max="100", min="0", name="faithfulness", value="100")
-                    .form-group.row
-                        label.col-sm-2(for="") 완성도 :
-                        input.col-sm-5(type="number", max="100", min="0", name="homework_completeLevel", value="100")
+                    .form-group.homework__fulfillment
+                        label.col-form-label(for="") 이행 :
+                        .form-check.form-check-inline
+                            label.col-form-label(for="") 우수
+                            input.form-check-input(type="radio", name="fulfillment", value="우수", checked)
+                        .form-check.form-check-inline
+                            label.col-form-label(for="") 양호
+                            input.form-check-input(type="radio", name="fulfillment", value="양호")
+                        .form-check.form-check-inline
+                            label.col-form-label(for="") 보통
+                            input.form-check-input(type="radio", name="fulfillment", value="보통")
+                        .form-check.form-check-inline
+                            label.col-form-label(for="") 불량
+                            input.form-check-input(type="radio", name="fulfillment", value="불량")
+                        .form-check.form-check-inline
+                            label.col-form-label(for="") 없음
+                            input.form-check-input(type="radio", name="fulfillment", value="없음")
+                    .form-group.homework__faithfulness
+                        label.col-form-label(for="") 충실도 :
+                        input.form-control.homework__faithfulness-number#faithfulness-number_js(type="number", max="100", min="0", name="faithfulness", value="100")
+                    .form-group
+                        label.col-form-label(for="") 완성도 :
+                        input.form-control(type="number", max="100", min="0", name="homework_completeLevel", value="100")
                 fieldset
                     legend 학습
-                    .form-group.row.form__study-unit
-                        label(for="") 학습단원 :
-                        textarea#study_unit_input_js(cols="30", rows="10", name="unit")
-                    button#select_unit_js(type="button", data-toggle="modal", data-target="#unitModal") 선택
-                    .form-grop.row
-                        label.col-sm-2(for="") 학습량 :
-                        input.col-sm-5(type="number", max="100", min="0", name="volume", value="100")
-                    .form-grop.row
-                        label.col-sm-2(for="") 완성도 :
-                        input.col-sm-5(type="number", max="100", min="0", name="study_completeLevel", value="100")
-                button#test_insert_js 테스트입력
+                    .form-group.form__study-unit
+                        label.col-form-label(for="") 학습단원 :
+                        textarea.form-control#study_unit_input_js(cols="30", rows="10", name="unit")
+                    button.btn.btn-secondary#select_unit_js(type="button", data-toggle="modal", data-target="#unitModal") 단원입력선택
+                    .form-grop
+                        label.col-form-label(for="") 학습량 :
+                        input.form-control(type="number", max="100", min="0", name="volume", value="100")
+                    .form-grop
+                        label.col-form-label(for="") 완성도 :
+                        input.form-control(type="number", max="100", min="0", name="study_completeLevel", value="100")
+                button.btn.btn-secondary#test_insert_js 테스트입력
                 .test
-                .form-group.row
-                    label(for="") 비고 :
-                    textarea(name="note", cols="70", rows="10")
-                input(type="submit")
+                .form-group
+                    label.col-form-label(for="") 비고 :
+                    textarea.form-control(name="note", cols="70", rows="10")
+                input.btn.btn-primary(type="submit")
 
     //- 모달창
     .modal.fade#unitModal(tabindex="-1", role="dialog", aria-labelledby="unitModal", aria-hidden="true")

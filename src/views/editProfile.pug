@@ -1,7 +1,7 @@
 extends layouts/main
 
 block content
-    .form-container
+    .global-form-container
      form(action=routes.editProfile, method="post")
         input(type="text", placeholder="닉네임", name="name", value=loggedUser.nickName)
         input(type="email", placeholder="이메일", name="email", value=loggedUser.email)

@@ -1,101 +1,100 @@
 extends layouts/main
 
 block content
-    .container
-        p #{student.name}학생의 정보
-        .form-container
+    .new-student-page.container
+        .newstudent-form-container
+            p #{student.name}학생의 정보
             form(action=`/students${routes.studentsEdit(student.id)}`, method="post")
                 input(type="hidden" name="studentName" value=student.name)
-                .form-group.row
-                    .form-group.col-sm-6.row
-                        label.col-sm-2.col-form-label(for="studentSchool") 학교
-                        input.col-sm-10.form-control#studentSchool(type="text", placeholder="학교", name="studentSchool", value=`${student.school}`)
-                    .form-group.col-sm-6.row
-                        label.col-sm-2.col-form-label(for="studentGrade") 학년
-                        select.custom-select.col-sm-10#studentGrade(placeholder="학년", name="studentGrade")
-                            option(value="") 학년선택
-                            if (student.grade === '초1')
-                                option(value="초1" selected) 초1
-                            else
-                                option(value="초1") 초1
-                            if (student.grade === '초2')
-                                option(value="초2" selected) 초2
-                            else
-                                option(value="초2") 초2
-                            if (student.grade === '초3')
-                                option(value="초3" selected) 초3
-                            else
-                                option(value="초") 초3
-                            if (student.grade === '초4')
-                                option(value="초4" selected) 초4
-                            else
-                                option(value="초4") 초4
-                            if (student.grade === '초5')
-                                option(value="초5" selected) 초5
-                            else
-                                option(value="초5") 초5
-                            if (student.grade === '초6')
-                                option(value="초6" selected) 초6
-                            else
-                                option(value="초6") 초6
-                            if (student.grade === '중1')
-                                option(value="중1" selected) 중1
-                            else
-                                option(value="중1") 중1
-                            if (student.grade === '중2')
-                                option(value="중2" selected) 증2
-                            else
-                                option(value="중2") 중2
-                            if (student.grade === '중3')
-                                option(value="중3" selected) 중3
-                            else
-                                option(value="중3") 중3
-                            if (student.grade === '고1')
-                                option(value="고1" selected) 고1
-                            else
-                                option(value="고1") 고1
-                            if (student.grade === '고2')
-                                option(value="고2" selected) 고2
-                            else
-                                option(value="고2") 고2
-                            if (student.grade === '고3')
-                                option(value="고3" selected) 고3
-                            else
-                                option(value="고3") 고3
-                .form-group.row
-                    .col-sm-6.row
-                        label.col-form-label.col-sm-2(for="studentTel") 전화번호
-                        input.col-sm-10.form-control#studentTel(type="tel", placeholder="010-0000-0000", name="tel", value=student.tel)
-                    .col-sm-6.row
-                        label.col-form-label.col-sm-2(for="registrationDate") 등록일
-                        input.col-sm-10.form-control#registrationDate(type="date", name="registrationDate")
                 .form-group
-                    label.col-form-label(for="lessonDay") 수업요일
-                    #lessonDay
-                        .form-check.form-check-inline
-                            input.form-check-input#mon(type="checkbox", value="월", name="lessonDay")
-                            label.form-check-label(for="mon") 월
-                        .form-check.form-check-inline
-                            input.form-check-input#tue(type="checkbox", value="화", name="lessonDay")
-                            label.form-check-label(for="tue") 화
-                        .form-check.form-check-inline
-                            input.form-check-input#wed(type="checkbox", value="수", name="lessonDay")
-                            label.form-check-label(for="wed") 수
-                        .form-check.form-check-inline
-                            input.form-check-input#thu(type="checkbox",  value="목", name="lessonDay")
-                            label.form-check-label(for="thu") 목
-                        .form-check.form-check-inline
-                            input.form-check-input#fri(type="checkbox", value="금", name="lessonDay")
-                            label.form-check-label(for="fri") 금
-                        .form-check.form-check-inline
-                            input.form-check-input#sat(type="checkbox", value="토", name="lessonDay")
-                            label.form-check-label(for="sat") 토
-                        .form-check.form-check-inline
-                            input.form-check-input#sun(type="checkbox", value="일", name="lessonDay")
-                            label.form-check-label(for="sun") 일
+                    label.col-form-label(for="studentSchool") 학교
+                    input.form-control#studentSchool(type="text", placeholder="학교", name="studentSchool", value=`${student.school}`)
+                .form-group
+                    label.col-form-label(for="studentGrade") 학년
+                    select.custom-select#studentGrade(placeholder="학년", name="studentGrade")
+                        option(value="") 학년선택
+                        if (student.grade === '초1')
+                            option(value="초1" selected) 초1
+                        else
+                            option(value="초1") 초1
+                        if (student.grade === '초2')
+                            option(value="초2" selected) 초2
+                        else
+                            option(value="초2") 초2
+                        if (student.grade === '초3')
+                            option(value="초3" selected) 초3
+                        else
+                            option(value="초") 초3
+                        if (student.grade === '초4')
+                            option(value="초4" selected) 초4
+                        else
+                            option(value="초4") 초4
+                        if (student.grade === '초5')
+                            option(value="초5" selected) 초5
+                        else
+                            option(value="초5") 초5
+                        if (student.grade === '초6')
+                            option(value="초6" selected) 초6
+                        else
+                            option(value="초6") 초6
+                        if (student.grade === '중1')
+                            option(value="중1" selected) 중1
+                        else
+                            option(value="중1") 중1
+                        if (student.grade === '중2')
+                            option(value="중2" selected) 증2
+                        else
+                            option(value="중2") 중2
+                        if (student.grade === '중3')
+                            option(value="중3" selected) 중3
+                        else
+                            option(value="중3") 중3
+                        if (student.grade === '고1')
+                            option(value="고1" selected) 고1
+                        else
+                            option(value="고1") 고1
+                        if (student.grade === '고2')
+                            option(value="고2" selected) 고2
+                        else
+                            option(value="고2") 고2
+                        if (student.grade === '고3')
+                            option(value="고3" selected) 고3
+                        else
+                            option(value="고3") 고3
+                .form-group
+                    label.col-form-label(for="studentTel") 전화번호
+                    input.form-control#studentTel(type="tel", placeholder="010-0000-0000", name="tel", value=student.tel)
+                .form-group    
+                    label.col-form-label(for="registrationDate") 등록일
+                    input.form-control#registrationDate(type="date", name="registrationDate")
+                .form-group
+                    fieldset
+                        legend 수업요일
+                        #lessonDay
+                            .form-check.form-check-inline
+                                input.form-check-input#mon(type="checkbox", value="월", name="lessonDay")
+                                label.form-check-label(for="mon") 월
+                            .form-check.form-check-inline
+                                input.form-check-input#tue(type="checkbox", value="화", name="lessonDay")
+                                label.form-check-label(for="tue") 화
+                            .form-check.form-check-inline
+                                input.form-check-input#wed(type="checkbox", value="수", name="lessonDay")
+                                label.form-check-label(for="wed") 수
+                            .form-check.form-check-inline
+                                input.form-check-input#thu(type="checkbox",  value="목", name="lessonDay")
+                                label.form-check-label(for="thu") 목
+                            .form-check.form-check-inline
+                                input.form-check-input#fri(type="checkbox", value="금", name="lessonDay")
+                                label.form-check-label(for="fri") 금
+                            .form-check.form-check-inline
+                                input.form-check-input#sat(type="checkbox", value="토", name="lessonDay")
+                                label.form-check-label(for="sat") 토
+                            .form-check.form-check-inline
+                                input.form-check-input#sun(type="checkbox", value="일", name="lessonDay")
+                                label.form-check-label(for="sun") 일
                 .from-group
-                    label.col-sm-4.col-form-label(for="studentNote") 비고
-                    textarea.col-sm-8.form-control#studentNote(name="note", cols="50", rows="5")=student.note
+                    label.col-form-label(for="studentNote") 비고
+                    textarea.form-control#studentNote(name="note", cols="50", rows="5")=student.note
                 .form-group
                     .form-check.form-check-inline
                         label.form-check-label(for="attend") 재원생
@@ -103,7 +102,7 @@ block content
                     .form-check.form-check-inline
                         label.form-check-label(for="outStudent") 퇴원생
                         input.form-check-input#outStudent(type="radio", name="studentStatus", value="퇴원생")
-                input(type="submit", value="저장")
+                input.btn.btn-primary(type="submit", value="저장")
     script(type='text/javascript').
         var year = #{student.registrationDate.getFullYear()};
         var month = #{student.registrationDate.getMonth()}+1;

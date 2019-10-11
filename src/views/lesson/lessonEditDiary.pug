@@ -1,9 +1,9 @@
 extends ../layouts/main
 
 block content
-    .container
-        h2 #{diary.name}학생의 #{date} 학습일지 수정
+    .container.lesson-new-container
         .form-container
+            h2 #{diary.name}학생의 #{date} 학습일지 수정
             form.form#lesson_EditForm_js(action=`/lesson${routes.lessonEdit(diary.id)}`, method="post")
                 input(type="text", name="diary_id", value=diary.id, hidden)
                 input(type="text", name="student_id", value=diary.student, hidden)
@@ -13,104 +13,103 @@ block content
                     .form-check.form-check-inline
                         label(for="") 정규
                         if (diary.studyType === '정규') 
-                            input(type="radio", name="studyType", value="정규", checked)
+                            input.form-check-input(type="radio", name="studyType", value="정규", checked)
                         else
-                            input(type="radio", name="studyType", value="정규")
+                            input.form-check-input(type="radio", name="studyType", value="정규")
                     .form-check.form-check-inline
                         label(for="") 보충
                         if (diary.studyType === '보충') 
-                            input(type="radio", name="studyType", value="보충", checked)
+                            input.form-check-input(type="radio", name="studyType", value="보충", checked)
                         else
-                            input(type="radio", name="studyType", value="보충")
+                            input.form-check-input(type="radio", name="studyType", value="보충")
                 .form-group
                     .form-check.form-check-inline
                         label(for="") 출석
                         if (diary.attend === '출석')
-                            input(type="radio", name="attend", value="출석", checked)
+                            input.form-check-input(type="radio", name="attend", value="출석", checked)
                         else
-                            input(type="radio", name="attend", value="출석")
+                            input.form-check-input(type="radio", name="attend", value="출석")
                     .form-check.form-check-inline
                         label(for="") 지각
                         if (diary.attend === '지각')
-                            input(type="radio", name="attend", value="지각", checked)
+                            input.form-check-input(type="radio", name="attend", value="지각", checked)
                         else
-                            input(type="radio", name="attend", value="지각")
+                            input.form-check-input(type="radio", name="attend", value="지각")
                     .form-check.form-check-inline
                         label(for="") 결석
                         if (diary.attend === '결석')
-                            input(type="radio", name="attend", value="결석", checked)
+                            input.form-check-input(type="radio", name="attend", value="결석", checked)
                         else
-                            input(type="radio", name="attend", value="결석")
+                            input.form-check-input(type="radio", name="attend", value="결석")
                 fieldset.homework
                     legend 숙제
-                    .form-group.row.homework__fulfillment
-                        label.col-sm-2(for="") 이행 :
-                        .col-sm-10
+                    .form-group.homework__fulfillment
+                        label(for="") 이행 :
                             .form-check.form-check-inline
                                 label(for="") 우수
                                 if (diary.homework.fulfillment === '우수')
-                                    input(type="radio", name="fulfillment", value="우수", checked)
+                                    input.form-check-input(type="radio", name="fulfillment", value="우수", checked)
                                 else
-                                    input(type="radio", name="fulfillment", value="우수")
+                                    input.form-check-input(type="radio", name="fulfillment", value="우수")
                             .form-check.form-check-inline
                                 label(for="") 양호
                                 if (diary.homework.fulfillment === '양호')
-                                    input(type="radio", name="fulfillment", value="양호", checked)
+                                    input.form-check-input(type="radio", name="fulfillment", value="양호", checked)
                                 else
-                                    input(type="radio", name="fulfillment", value="양호")
+                                    input.form-check-input(type="radio", name="fulfillment", value="양호")
                             .form-check.form-check-inline
                                 label(for="") 보통
                                 if (diary.homework.fulfillment === '보통')
-                                    input(type="radio", name="fulfillment", value="보통", checked)
+                                    input.form-check-input(type="radio", name="fulfillment", value="보통", checked)
                                 else
-                                    input(type="radio", name="fulfillment", value="보통")
+                                    input.form-check-input(type="radio", name="fulfillment", value="보통")
                             .form-check.form-check-inline
                                 label(for="") 불량
                                 if (diary.homework.fulfillment === '불량')
-                                    input(type="radio", name="fulfillment", value="불량", checked)
+                                    input.form-check-input(type="radio", name="fulfillment", value="불량", checked)
                                 else
-                                    input(type="radio", name="fulfillment", value="불량")
+                                    input.form-check-input(type="radio", name="fulfillment", value="불량")
                             .form-check.form-check-inline
                                 label(for="") 없음
                                 if (diary.homework.fulfillment === '없음')
-                                    input(type="radio", name="fulfillment", value="없음", checked)
+                                    input.form-check-input(type="radio", name="fulfillment", value="없음", checked)
                                 else
-                                    input(type="radio", name="fulfillment", value="없음")
-                    .form-group.row.homework__faithfulness
-                        label.col-sm-2(for="") 충실도 :
-                        input.col-sm-5.homework__faithfulness-number#faithfulness-number_js(type="number", max="100", min="0", name="faithfulness", value=diary.homework.faithfulness)
-                    .form-group.row
-                        label.col-sm-2(for="") 완성도 :
-                        input.col-sm-5(type="number", max="100", min="0", name="homework_completeLevel", value=diary.homework.completeLevel)
+                                    input.form-check-input(type="radio", name="fulfillment", value="없음")
+                    .form-group.homework__faithfulness
+                        label(for="") 충실도 :
+                        input.form-control.homework__faithfulness-number#faithfulness-number_js(type="number", max="100", min="0", name="faithfulness", value=diary.homework.faithfulness)
+                    .form-group
+                        label(for="") 완성도 :
+                        input.form-control(type="number", max="100", min="0", name="homework_completeLevel", value=diary.homework.completeLevel)
                 fieldset
                     legend 학습
-                        .form-group.row.form__study-unit
-                            label(for="") 학습단원 : 
-                            textarea#study_unit_input_js(cols="30", rows="10", name="unit")=unit_string
-                    button#select_unit_js(type="button", data-toggle="modal", data-target="#unitModal") 선택
-                    .form-grop.row
-                        label.col-sm-2(for="") 학습량 :
-                        input.col-sm-5(type="number", max="100", min="0", name="volume", value=diary.study.volume)
-                    .form-grop.row
-                        label.col-sm-2(for="") 완성도 :
-                        input.col-sm-5(type="number", max="100", min="0", name="study_completeLevel", value=diary.study.completeLevel)
+                    .form-group.form__study-unit
+                        label(for="") 학습단원 : 
+                        textarea.form-control#study_unit_input_js(cols="30", rows="10", name="unit")=unit_string
+                    button.btn.btn-secondary#select_unit_js(type="button", data-toggle="modal", data-target="#unitModal") 단원선택
+                    .form-grop
+                        label(for="") 학습량 :
+                        input.form-control(type="number", max="100", min="0", name="volume", value=diary.study.volume)
+                    .form-grop
+                        label(for="") 완성도 :
+                        input.form-control(type="number", max="100", min="0", name="study_completeLevel", value=diary.study.completeLevel)
                 .exit-test
-                    button#test_insert_js 테스트추가
+                    button.btn.btn-secondary#test_insert_js 테스트추가
                     .test
                     each val, index in diary.test
-                        .form-group.row
+                        .form-group
                             label(for="") 테스트이름 :
-                            input(type="input", name="test_title", value=val.title)
-                        .form-grop.row
+                            input.form-control(type="input", name="test_title", value=val.title)
+                        .form-grop
                             label(for="") 테스트점수 :
-                            input(type="number", max="100", min="0", name="test_score", value=val.score)
-                        .form-grop.row
+                            input.form-control(type="number", max="100", min="0", name="test_score", value=val.score)
+                        .form-grop
                             label(for="") 테스트비고 :
-                            textarea(name="test_note", cols="50", rows="5")=val.note
-                .form-group.row
+                            textarea.form-control(name="test_note", cols="50", rows="5")=val.note
+                .form-group
                     label(for="") 비고 :
-                    textarea(name="note", cols="70", rows="10")=diary.note
-                input(type="submit", value="저장")
+                    textarea.form-control(name="note", cols="70", rows="10")=diary.note
+                input.btn.btn-primary(type="submit", value="저장")
                 
     //- 모달창
     .modal.fade#unitModal(tabindex="-1", role="dialog", aria-labelledby="unitModal", aria-hidden="true")

@@ -1,5 +1,8 @@
 @import "config/_variables.scss";
 @import "config/reset.scss";
+@import "parcials/globalForm.scss";
+@import "pages/newStudents.scss";
+@import "pages/lessonNewDiary.scss";
 
 * {
     box-sizing: border-box;
